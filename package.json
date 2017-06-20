@@ -17,7 +17,7 @@
     "chalk": "^1.1.3",
     "console": "^0.5.2",
     "console-menu": "^0.1.0",
-    "json-serialize-deserialize": "^1.0.21"
+    "prompt": "^1.0.0"
   },
   "bin": {
     "angular": "./scripts/startup.js"

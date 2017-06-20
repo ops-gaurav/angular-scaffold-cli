@@ -1,3 +1,7 @@
+/**
+ * @desc the module to analyze the directory structure of the application
+ * @author gaurav sharma
+ */
 const path = require('path');
 const fs = require('fs');
 

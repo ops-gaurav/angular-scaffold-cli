@@ -5,8 +5,10 @@ const chalk = require('chalk');
 const childProcess = require('child_process');
 const path = require('path');
 const konsole = require ('../services/konsole.js');
+const fs = require ('fs');
 
 const structureAnalyzer = require('../services/analyze-scaffold-ng2-structure');
+const builder = require ('../services/create-items.js');
 
 let spawn = childProcess.spawn;
 
@@ -23,6 +25,18 @@ if (process.argv.length > 2) {
 
 					if (structureAnalyzer.analyzeScaffoldDirectoryStructure()){
 						konsole.green ('directory validated');
+						if (process.argv[4]) {
+							let componentName = process.argv[4];
+							let componentFolder = path.resolve ('src', 'app', 'Components');
+							if (!fs.existsSync (componentFolder)) {
+								fs.mkdirSync();
+							}
+
+							builder.createComponent (componentFolder, componentName);
+
+						} else {
+							konsole.red ('Need to define component name')
+						}
 					} else {
 						konsole.red ('Directory not validated. Check structure and package.json for source stamp');
 					}
