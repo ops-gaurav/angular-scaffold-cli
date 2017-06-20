@@ -27,5 +27,14 @@ module.exports = {
 
 	forCSS: () => {
 		return "* {\n\tpadding: 0\n\tmargin: 0\n}";
+	},
+	forService: (serviceName) => {
+		return ""
+			+"import { Injectable } from '@angular/core'\n"
+			+"\n\n"
+			+"@Injectable()\n"
+			+"export class "+ serviceName.charAt(0).toUpperCase()+ serviceName.substring(1, serviceName.length) +"Service {\n"
+			+"\tconstructor() {}\n"
+			+"}";
 	}
 }
