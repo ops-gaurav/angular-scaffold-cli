@@ -1,0 +1,29 @@
+{
+  "name": "angular-scaffold-cli",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dummy-run": "babel-node index.js create component"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "chalk": "^1.1.3",
+    "console": "^0.5.2",
+    "console-menu": "^0.1.0",
+    "json-serialize-deserialize": "^1.0.21"
+  },
+  "bin": {
+    "angular": "./scripts/startup.js"
+  },
+  "devDependencies": {
+    "chai": "^4.0.2",
+    "mocha": "^3.4.2"
+  }
+}
