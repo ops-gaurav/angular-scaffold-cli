@@ -4,11 +4,11 @@ const consoleMenu = require('console-menu');
 const chalk = require('chalk');
 const childProcess = require('child_process');
 const path = require('path');
-const konsole = require ('../services/konsole.js');
-const fs = require ('fs');
+const konsole = require('../services/konsole.js');
+const fs = require('fs');
 
 const structureAnalyzer = require('../services/analyze-scaffold-ng2-structure');
-const builder = require ('../services/create-items.js');
+const builder = require('../services/create-items.js');
 
 let spawn = childProcess.spawn;
 
@@ -23,46 +23,60 @@ if (process.argv.length > 2) {
 				case 'component':
 					// console.log('making component');
 
-					if (structureAnalyzer.analyzeScaffoldDirectoryStructure()){
-						konsole.green ('Creating new coomponent');
+					if (structureAnalyzer.analyzeScaffoldDirectoryStructure()) {
+						konsole.green('Creating new coomponent');
 						if (process.argv[4]) {
 							let componentName = process.argv[4];
-							let componentFolder = path.resolve ('src', 'app', 'Components');
-							if (!fs.existsSync (componentFolder)) {
+							let componentFolder = path.resolve('src', 'app', 'Components');
+							if (!fs.existsSync(componentFolder)) {
 								fs.mkdirSync();
 							}
 
-							builder.createComponent (componentFolder, componentName);
+							builder.createComponent(componentFolder, componentName);
 
 						} else {
-							konsole.red ('Need to define component name')
+							konsole.red('Need to define component name')
 						}
 					} else {
-						konsole.red ('Directory not validated. Check structure and package.json for source stamp. Scaffold your angular 2 project via es6-scaffolder only.');
+						konsole.red('Directory not validated. Check structure and package.json for source stamp. Scaffold your angular 2 project via es6-scaffolder only.');
 					}
 					break;
 				case 'facade':
 					console.log('making new facade');
+					if (structureAnalyzer.analyzeScaffoldDirectoryStructure()) {
+						if (process.argv[4]) {
+							let facadeName = process.argv[4];
+							let facadeFolder = path.resolve('src', 'app', 'Facades')
+
+							if (!fs.existsSync(facadeFolder)) {
+								fs.mkdir();
+							}
+
+							builder.createFacade(facadeFolder, facadeName);
+						} else {
+							konsole.red('Need to define facade name');
+						}
+					}
 					break;
 				case 'service':
 					if (structureAnalyzer.analyzeScaffoldDirectoryStructure()) {
-						konsole.green ('creating new service');
+						// konsole.green ('creating new service');
 
 						if (process.argv[4]) {
 							let serviceName = process.argv[4];
-							let serviceFolder = path.resolve ('src', 'app', 'Services');
-							
-							if (!fs.existsSync (serviceFolder)) {
+							let serviceFolder = path.resolve('src', 'app', 'Services');
+
+							if (!fs.existsSync(serviceFolder)) {
 								// make one
 								fs.mkdir();
 							}
 
-							builder.createService (serviceFolder, serviceName);
+							builder.createService(serviceFolder, serviceName);
 						} else {
-							konsole.red ('Need to define service name');
+							konsole.red('Need to define service name');
 						}
 					} else {
-						konsole.red ('Directory not validated. Check structure and package.json for source stamp. Scaffold your angular 2 project via es6-scaffolder only.');
+						konsole.red('Directory not validated. Check structure and package.json for source stamp. Scaffold your angular 2 project via es6-scaffolder only.');
 					}
 					break;
 				default:
@@ -75,5 +89,5 @@ if (process.argv.length > 2) {
 			break;
 	}
 } else {
-	
+
 }

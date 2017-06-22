@@ -36,5 +36,11 @@ module.exports = {
 			+"export class "+ serviceName.charAt(0).toUpperCase()+ serviceName.substring(1, serviceName.length) +"Service {\n"
 			+"\tconstructor() {}\n"
 			+"}";
+	},
+	forFacade: (facadeName) => {
+		return ""
+			+"export interface "+ facade.chartAt(0).toUpperCase()+facade.substring(1, facadeName.length) +"{ "
+			+"\n\tpublic id: Number\n"
+			+"}";
 	}
 }

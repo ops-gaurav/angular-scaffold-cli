@@ -3,7 +3,9 @@
  * @author gaurav sharma
  */
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs');	
+// for logging
+const logger = require ('./logging-service.js');
 
 // let exports = module.exports = {};
 
@@ -40,8 +42,11 @@ module.exports.analyzeScaffoldDirectoryStructure = () => {
 	
 	if (fileData.source !== 'es6-basecamp-ng2-webpack') {
 		validDirectory = false;
+		logger.log ('info', 'Repository source stamp failed');
 	} 
 	
+	if (validDirectory) logger.log ('info', 'Directory validated');
+	else logger.log ('info', 'Directory  not validated');
 	return validDirectory;
 }
 
@@ -53,12 +58,10 @@ module.exports.analyzePathSync =(absPath, pathObject) => {
 	
 	for (file in pathObject) {
 		if (typeof pathObject[file] == 'object') {
-			// console.log ('analyzing directory '+ path.resolve (absPath, file));
 			return this.analyzePathSync (path.resolve (absPath, file), pathObject[file]);
 		}else {
 			var dir = path.resolve (absPath, file);
 			if (!fs.existsSync (dir)) {
-				// console.log ('Not found file '+ path.resolve (absPath, file));
 				return !validDirectory;
 			}
 		}
