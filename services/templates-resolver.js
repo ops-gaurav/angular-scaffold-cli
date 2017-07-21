@@ -39,7 +39,7 @@ module.exports = {
 	},
 	forFacade: (facadeName) => {
 		return ""
-			+"export interface "+ facade.chartAt(0).toUpperCase()+facade.substring(1, facadeName.length) +"{ "
+			+"export interface "+ facadeName.charAt(0).toUpperCase()+facadeName.substring(1, facadeName.length) +"{ "
 			+"\n\tpublic id: Number\n"
 			+"}";
 	}

@@ -129,7 +129,7 @@ module.exports = {
 				}
 			})
 		} else {
-			fs.writeFileSync (path.resolve (serviceFilePath), serviceSource);
+			fs.writeFileSync (path.resolve (facadeFilePath), facadeSource);
 			konsole.blue ('Created a new facade '+ facadeName);
 		}
 	}
